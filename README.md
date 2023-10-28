@@ -272,7 +272,7 @@ for i in range(20):
 ```
 
 ### Cli 测试验证
-`curl -v -x http://PROXY_TUNNEL_SERVER_IP:30100 http://httpbin.org/ip`
+`curl -v -x http://127.0.0.1:30100 http://httpbin.org/ip`
 
 ![image-20220102152115518](https://gitee.com/anyewuxin/img/raw/master/img/image-20220102152115518.png)
 

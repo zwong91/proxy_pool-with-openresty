@@ -11,6 +11,9 @@ RUN opm get ledgetech/lua-resty-http && \
 COPY tunnel .
 RUN cat  conf/nginx.conf
 
-ADD tunnel/lua /app/lua
+COPY .nginx_env .
+ADD tunnel/lua /usr/local/openresty/lualib/resty/lua
 
-CMD /bin/sh -c "mkdir -p /app/logs && cd /usr/local/openresty/nginx && openresty -p /app"
+# CMD /bin/sh -c "mkdir -p /app/logs && openresty -p /app"
+CMD /bin/sh -c "mkdir -p /app/logs && /usr/local/openresty/bin/openresty -g 'daemon off;'"
+

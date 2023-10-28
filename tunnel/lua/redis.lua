@@ -8,7 +8,7 @@ local password = os.getenv("REDIS_PASSWORD")
 --ngx.log(ngx.ERR, "redis", host, port, db, password)
 
 if host == nil then
-    local f = io.open('/app/.env', "r")
+    local f = io.open('/app/.nginx_env', "r")
     if f ~= nil then
         local content = f:read("*all")
         f:close()
