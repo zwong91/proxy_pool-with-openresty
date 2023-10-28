@@ -28,6 +28,9 @@
 # `docker-compose.yml` 文件部署服务，并在防火墙（本地/云）开放相应端口
 docker-compose up -d
 docker exec -it proxy_nginx bash
+
+https://stackoverflow.com/questions/53783720/an-easy-way-to-figure-out-why-a-docker-container-keep-restarting
+
 ```
 
 ProxyPool 爬虫代理IP池
@@ -272,7 +275,8 @@ for i in range(20):
 ```
 
 ### Cli 测试验证
-`curl -v -x http://localhost:30100 http://httpbin.org/ip`
+`curl -v -x http://localhost:30000 http://httpbin.org/ip`
+
 
 ![image-20220102152115518](https://gitee.com/anyewuxin/img/raw/master/img/image-20220102152115518.png)
 
