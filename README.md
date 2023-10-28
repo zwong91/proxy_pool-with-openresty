@@ -14,6 +14,10 @@
 >
 >A: redis `use_proxy` 这个key直接获取可用的代理ip, proxy.lua中直接读取数据
 
+> Q: 对Proxy-Pool主要的特性支持Tunnel 不断跳IP
+>
+> A: tunnel 目录下lua 灵活调整
+
 ```sh
 #端口范围
 > 根据客户端请求的服务器的端口 ，确定是随机 还是固定 计算索引：每次获取全部IP，根据类型分别计算索引
