@@ -6,9 +6,8 @@ on:
       - 'main'
 
 env:
-  dockerfile: './Dockerfile'
   platform: 'linux/amd64'
-  image_name: 'kim2023/proxy-tunnel-nginx'
+  image_name: 'kim2023/proxy-pool-with-openresty'
 
 jobs:
 
@@ -18,10 +17,10 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -37,4 +36,4 @@ jobs:
         with:
           context: .
           push: true
-          platform: ${{ env.platform }}
+          tags: ${{env.image_name}}:latest
