@@ -12,7 +12,7 @@
 
 > Q: openresty 提供的Lua 可编程性灵活fetch 从redis读取数据
 >
->A: redis `use_proxy` 这个key直接获取可用的代理ip
+>A: redis `use_proxy` 这个key直接获取可用的代理ip, proxy.lua中直接读取就好
 
 ```sh
 #端口范围
