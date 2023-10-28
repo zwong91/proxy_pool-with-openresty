@@ -1,0 +1,14 @@
+FROM openresty/openresty:1.21.4.1-5-jammy
+
+RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
+
+WORKDIR /app
+
+RUN opm get ledgetech/lua-resty-http && \
+    opm get anjia0532/lua-resty-redis-util &&  \
+    opm get hamishforbes/lua-resty-iputils
+
+COPY . .
+RUN cat  tunnel/conf/nginx.conf
+
+CMD /bin/sh -c "mkdir -p /app/logs && openresty -p /app -g daemon off;"

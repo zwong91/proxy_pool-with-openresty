@@ -1,0 +1,57 @@
+version: '3.5'
+services:
+  proxy_pool:
+    build: .
+    container_name: proxy_pool
+    ports:
+      - "5010:5010"
+    depends_on:
+      - proxy_redis
+    restart: always
+    environment:
+      DB_CONN: "redis://:123456@proxy_redis:6379/1"
+    networks:
+      - backnet
+
+  proxy_redis:
+    image: "redis"
+    container_name: proxy_redis
+    command: redis-server --requirepass 123456
+    restart: always
+    networks:
+      - backnet
+
+  proxy_tunnel_nginx:
+    image: ${PROXY_TUNNEL_IMAGE}
+    build:
+      context: .
+      dockerfile: Nginx
+    container_name: proxy_tunnel_nginx
+    restart: always
+    depends_on: 
+      - proxy_redis
+#    network_mode: host # 在服务器上部署时建议使用 host,同时屏蔽下面的 ports 和 networks
+    ports:
+      - "9000:80"
+      - "30000:30000"
+      - "30100-30200:30100-30200"
+    environment:
+      # 自定义的redis 相关环境变量
+      - REDIS_HOST
+      - REDIS_PORT
+      - REDIS_DB
+      - REDIS_PASSWORD
+      - TZ=Asia/Shanghai
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+    networks:
+      - backnet
+      - frontnet
+volumes:
+  db-data:
+
+networks:
+  backnet:
+  frontnet:
