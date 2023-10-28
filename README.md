@@ -1,3 +1,29 @@
+### 扩展隧道代理 Tunnel
+> What?
+>
+> 本项目在proxy_pool项目基础上使用`openresty`服务达到隧道代理的功能
+> 
+> proxy_pool项目地址：https://github.com/jhao104/proxy_pool.git
+
+> Q：隧道代理与常规代理的不同之处是什么
+>
+> A：隧道代理是一种代理IP存在方式，一般是代理IP。与传统的固定代理IP相比，它的特殊之处在于它会在代理服务器上自动更改IP，这样每个请求都会使用不同的IP
+>
+
+> Q: openresty 提供的Lua 可编程性灵活fetch 从redis读取数据
+>
+>A: redis `use_proxy` 这个key直接获取可用的代理ip
+
+```sh
+#端口范围
+> 根据客户端请求的服务器的端口 ，确定是随机 还是固定 计算索引：每次获取全部IP，根据类型分别计算索引
+30000 http
+30100 stream 隧道代理，随机模式
+30101~30200 stream 隧道代理，端口映射
+
+# `docker-compose.yml` 文件部署服务，并在防火墙（本地/云）开放相应端口
+docker-compose up -d
+```
 
 ProxyPool 爬虫代理IP池
 =======
@@ -222,29 +248,6 @@ PROXY_FETCHER = [
   
   如果还有其他好的免费代理网站, 可以在提交在[issues](https://github.com/jhao104/proxy_pool/issues/71), 下次更新时会考虑在项目中支持。
 
-
-### 扩展隧道代理 Tunnel
-> What?
->
-> 本项目在proxy_pool项目基础上使用`openresty`服务达到隧道代理的功能
-> 
-> proxy_pool项目地址：https://github.com/jhao104/proxy_pool.git
-
-> Q：隧道代理与常规代理的不同之处是什么
->
-> A：隧道代理是一种代理IP存在方式，一般是代理IP。与传统的固定代理IP相比，它的特殊之处在于它会在代理服务器上自动更改IP，这样每个请求都会使用不同的IP
->
-
-```sh
-#端口范围
-> 根据客户端请求的服务器的端口 ，确定是随机 还是固定 计算索引：每次获取全部IP，根据类型分别计算索引
-30000 http
-30100 stream 隧道代理，随机模式
-30101~30200 stream 隧道代理，端口映射
-
-# `docker-compose.yml` 文件部署服务，并在防火墙（本地/云）开放相应端口
-docker-compose up -d
-```
 
 ### python 测试代码
 
