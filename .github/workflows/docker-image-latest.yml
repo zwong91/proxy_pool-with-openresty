@@ -9,7 +9,6 @@ env:
   dockerfile: './Dockerfile'
   platform: 'linux/amd64'
   image_name: 'kim2023/proxy-tunnel-nginx'
-  tag: 'latest'
 
 jobs:
 
@@ -39,4 +38,3 @@ jobs:
           context: .
           push: true
           platform: ${{ env.platform }}
-          tag: ${{ env.tag }}
