@@ -8,7 +8,8 @@ RUN opm get ledgetech/lua-resty-http && \
     opm get anjia0532/lua-resty-redis-util &&  \
     opm get hamishforbes/lua-resty-iputils
 
-COPY . .
-RUN cat  tunnel/conf/nginx.conf
+COPY tunnel .
+RUN cat  conf/nginx.conf
+#ADD lua  /usr/local/openresty/lualib/resty
 
-CMD /bin/sh -c "mkdir -p /app/logs && openresty -p /app -g daemon off;"
+CMD /bin/sh -c "mkdir -p /app/logs && openresty -p /app"

@@ -21,12 +21,11 @@ services:
     networks:
       - backnet
 
-  proxy_tunnel_nginx:
-    image: ${PROXY_TUNNEL_IMAGE}
+  proxy_nginx:
     build:
       context: .
       dockerfile: Nginx
-    container_name: proxy_tunnel_nginx
+    container_name: proxy_nginx
     restart: always
     depends_on: 
       - proxy_redis
