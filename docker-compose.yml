@@ -26,14 +26,14 @@ services:
       context: .
       dockerfile: Nginx
     container_name: proxy_nginx
-    #restart: always
+    restart: always
     depends_on: 
       - proxy_pool
 #    network_mode: host # 在服务器上部署时建议使用 host,同时屏蔽下面的 ports 和 networks
     ports:
       - "9000:80"
-      #- "30000:30000"
-      #- "30100-30200:30100-30200"
+      - "30000:30000"
+      - "30100-30200:30100-30200"
     environment:
       # # 自定义的redis 相关环境变量
       # - REDIS_HOST
