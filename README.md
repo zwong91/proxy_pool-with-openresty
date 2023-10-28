@@ -27,6 +27,7 @@
 
 # `docker-compose.yml` 文件部署服务，并在防火墙（本地/云）开放相应端口
 docker-compose up -d
+docker exec -it proxy_nginx bash
 ```
 
 ProxyPool 爬虫代理IP池
