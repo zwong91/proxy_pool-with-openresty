@@ -260,7 +260,7 @@ PROXY_FETCHER = [
 import requests
 import time
 
-proxies={"http":"http://IP:8888"}
+proxies={"http":"http://localhost:30100"}
 for i in range(20):
     try:
         res = requests.get("http://httpbin.org/ip",headers = {"Connection":"close"},proxies=proxies)
@@ -272,7 +272,7 @@ for i in range(20):
 ```
 
 ### Cli 测试验证
-`curl -v -x http://127.0.0.1:30100 http://httpbin.org/ip`
+`curl -v -x http://localhost:30100 http://httpbin.org/ip`
 
 ![image-20220102152115518](https://gitee.com/anyewuxin/img/raw/master/img/image-20220102152115518.png)
 
